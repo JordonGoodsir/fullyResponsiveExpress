@@ -2,7 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');  
+var logger = require('morgan');   
+const cors = require("cors");
+
 
 const { mongooseConnect } = require("./services/database/mongoose");
 
@@ -13,8 +15,21 @@ var storyRouter = require('./routes/story');
 
 
 
-var app = express();
+var app = express(); 
 
+const whiteList = ["http://localhost:3000"];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors({ origin: true, credentials: true }));
 
 app.use(logger('dev'));
 app.use(express.json());
