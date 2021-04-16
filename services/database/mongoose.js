@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const mongooseConnect = (env) => {
   console.log(env);
     mongoose
-      .connect("mongodb://localhost/santa_site_test", {
+      .connect("mongodb://localhost/fullyResponsive", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true,
