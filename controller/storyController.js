@@ -26,7 +26,7 @@ const postStory = (req,res) =>{
         title: req.body.title, 
         wordPrompts: req.body.wordPrompts, 
         body: req.body.body
-    }) 
+    })  
 
     story.save() 
     .then((data)=>{ 
@@ -39,10 +39,23 @@ const postStory = (req,res) =>{
         res.send("error")
     }) 
 
-}
+} 
+
+getStory = async (req,res) =>{  
+    
+    Story.find({}).exec((error, story) => {
+        if (error) {
+          res.status(404);
+          return res.send("Stories not found");
+        } 
+        res.send(story); 
+    }) 
+
+} 
 
   
 module.exports = { 
     getWords, 
-    postStory
+    postStory,
+    getStory
   };
