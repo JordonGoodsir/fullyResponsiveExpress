@@ -8,7 +8,6 @@ const getWords = async (req,res) =>{
     .then((response) => response.json()) 
     .then((data) =>{   
         res.status(200); 
-        console.log(data[0].word)
         res.send(data[0].word)
     }) 
     .catch((err) => {
@@ -21,7 +20,6 @@ const getWords = async (req,res) =>{
 
 const postStory = (req,res) =>{  
      
-
     const story = new Story({ 
         title: req.body.title, 
         wordPrompts: req.body.wordPrompts, 
